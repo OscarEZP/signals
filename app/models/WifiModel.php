@@ -12,6 +12,6 @@ class Wifi extends Illuminate\Database\Eloquent\Model {
 
     protected $fillable = array(
         'name','station_mac', 'first_time_seen', 'last_time_seen','rssi', 'number_of_packets',
-        'geo_lat', 'geo_lon', 'actual_at_server', 'is_being_sent'
+        'geo_lat', 'geo_lon', 'actual_at_server', 'is_being_sent', 'bssid'
     );
 }

@@ -17,7 +17,30 @@ class Bluetooth extends Illuminate\Database\Eloquent\Model {
         'client_name'
     );
 
+    public $errors;
 
+    public function getErrors() {
+        return $this->errors;
+    }
+
+    public $rules = array(
+        'name' => 'required|exists',
+        'client_mac' => 'required|exists',
+        'rssi' => 'required|exists',
+        'detection_time' => 'required|exists',
+        'geo_lat' => 'required|exists',
+        'geo_lon' => 'required|exists',
+        'client_name' => 'required|exists'
+    );
+
+    public function is_valid($data) {
+        $v = Validator::make($data, $this->rules);
+        if ($v->fails()){
+            $this->errors = $v->errors();
+            return false;
+        }
+        return true;
+    }
 
 }
 

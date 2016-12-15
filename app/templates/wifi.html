@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Wifi</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="application/javascript" src="../js/wifi.js"></script>
+    <link rel="stylesheet" href="../style/main.css">
+</head>
+<body>
+
+<div class="container">
+    <br>
+    <br>
+
+    <div class="container">
+        <div class="row">
+            <div class="btn-group col-xs-offset-3 col-sm-offset-4">
+                <button type="button" class="btn btn-default delete" >Borrar BD</button>
+                <button type="button" class="btn btn-default sumbit" >Refrescar</button>
+                <button type="button" class="btn btn-default bluetooth">Señales Bluetooth</button>
+            </div>
+
+        </div>
+    </div>
+    <br>
+    <div class="container">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="alert alert-success alert-dismissible" id="myAlert">
+                <a href="#" class="close">&times;</a>
+                <strong>Success!</strong> La base de datos ha sido borrada!.
+            </div>
+            <div class="alert alert-danger" id="AlertDanger">
+                <a href="#" class="close">&times;</a>
+                <strong>Danger!</strong> La base de datos no ha sido borrada.
+            </div>
+
+        </div>
+    </div>
+    <div>
+        <img src="../img/wifi.ico" class="img-responsive center-block wifi_img" alt="">
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead >
+            <tr>
+                <th>N&uacute;mero</th>
+                <th>Nombre de estaci&oacute;n</th>
+                <th>MAC</th>
+                <th>Hora de Detecci&oacute;n</th>
+                <th>Detectada por última vez</th>
+                <th>Acción</th>
+            </tr>
+            </thead>
+            <tbody id="refresh">
+            </tbody>
+        </table>
+    </div>
+
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="gridModalLabel">Detalles de la señal</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-xs-4">Nombre de estaci&oacute;n:</label>
+                            <div class="col-xs-6">
+                                <input type="text" class="form-control" id="nameStation">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-4">MAC:</label>
+                            <div class="col-xs-6">
+                                <input type="text" class="form-control" id="mac">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-4">Hora de Detecci&oacute;n:</label>
+                            <div class="col-xs-6">
+                                <input type="text" class="form-control" id="first_see">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-4">Detectada por última vez:</label>
+                            <div class="col-xs-6">
+                                <input type="text" class="form-control" id="last_see">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-4">Rssi:</label>
+                            <div class="col-xs-6">
+                                <input type="text" class="form-control" id="rssi">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-4">Número de paquetes:</label>
+                            <div class="col-xs-6">
+                                <input type="text" class="form-control" id="package">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-4">Latitud:</label>
+                            <div class="col-xs-6">
+                                <input type="text" class="form-control" id="lat">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-4">Longitud:</label>
+                            <div class="col-xs-6">
+                                <input type="text" class="form-control" id="lon">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-4">Bssid:</label>
+                            <div class="col-xs-6">
+                                <input type="text" class="form-control" id="bssid">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer ">
+                    <button type="button" class="btn btn-danger btn-block" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
