@@ -3,18 +3,37 @@ error_reporting(-1);
 ini_set('display_errors', 'On');
 require('app/controllers/BluetoothController.php');
 require('app/controllers/WifiController.php');
+require('app/controllers/MetaController.php');
+require('app/controllers/MessageController.php');
+require('app/controllers/RaspberryController.php');
 require('app/controllers/ObjectToArray.php');
 
 $data = json_decode(file_get_contents('php://input'));
 $data = cvf_convert_object_to_array($data);
 
+$meta = isset($data['meta']) ? $data['meta']: null;
+$metaApp = isset($data['metaApp']) ? $data['metaApp']: null;
 
+if($meta){
+
+    $metainsert = new MetaController();
+    $metainsert = $metainsert->store($meta);
+
+    $rasp = new RaspberryController();
+    $rasp = $rasp->store($meta);
+
+}
+
+if($metaApp){
+    $psMessage = new MessageController();
+    $psMessage = $psMessage->store($metaApp);
+}
 
 if(isset($data['signalB'])) {
+    $signal = $data['signalB'];
 
-    $data = $data['signalB'];
     $psBluetooth = new BluetoothController();
-    $psBluetooth = $psBluetooth->postBluetooth($data);
+    $psBluetooth = $psBluetooth->postBluetooth($signal, $meta);
     $result = json_encode($psBluetooth);
     header('Content-type: application/json');
     echo $result;
@@ -22,9 +41,10 @@ if(isset($data['signalB'])) {
 
 }else if (isset($data['signalW'])){
 
-    $data = $data['signalW'];
+    $signal = $data['signalW'];
+
     $psWifi = new WifiController();
-    $psWifi = $psWifi->postWifi($data);
+    $psWifi = $psWifi->postWifi($signal, $meta);
     $result = json_encode($psWifi);
     header('Content-type: application/json');
     echo $result;
